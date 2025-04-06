@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Catch My Heart</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background: linear-gradient(to right, #ffc0cb, #ffe6f0);
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      color: #d63384;
+    }
+
+    #gameArea {
+      position: relative;
+      width: 100vw;
+      height: 80vh;
+    }
+
+    .heart, .nope {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      font-size: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.2s;
+    }
+
+    .heart {
+      background-color: #ff4d88;
+      border-radius: 50%;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .nope {
+      background-color: #6c757d;
+      color: white;
+      border-radius: 20px;
+      font-size: 16px;
+      padding: 10px;
+    }
+
+    #message {
+      text-align: center;
+      font-size: 26px;
+      color: #28a745;
+      margin-top: 20px;
+      display: none;
+    }
+
+    #celebrate {
+      font-size: 60px;
+      text-align: center;
+      animation: pop 1s ease-out forwards;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(2); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>sorry maaf kr da 😭😭🙏🏻!</h1>
+
+  <div id="gameArea">
+    <div class="heart" id="heart">maaf kia</div>
+    <div class="nope" id="nope">No!</div>
+  </div>
+
+  <div id="message">
+    <div id="celebrate">YAY!!!</div>
+    <p>Thank you hehe 🥹❤️<br>promise dubara nhi hoga 🥺!</p>
+  </div>
+
+  <script>
+    const heart = document.getElementById("heart");
+    const nope = document.getElementById("nope");
+    const message = document.getElementById("message");
+    const gameArea = document.getElementById("gameArea");
+
+    function moveElementRandomly(el) {
+      const maxX = window.innerWidth - el.offsetWidth;
+      const maxY = window.innerHeight - el.offsetHeight - 100;
+      el.style.left = Math.random() * maxX + "px";
+      el.style.top = Math.random() * maxY + "px";
+    }
+
+    heart.addEventListener("click", () => {
+      gameArea.style.display = "none";
+      message.style.display = "block";
+    });
+
+    nope.addEventListener("mouseover", () => {
+      moveElementRandomly(nope);
+    });
+
+    // Initial random positions
+    moveElementRandomly(heart);
+    moveElementRandomly(nope);
+
+    // Make heart move slightly every few seconds
+    setInterval(() => {
+      moveElementRandomly(heart);
+    }, 3000);
+  </script>
+
+</body>
+</html>
